@@ -1,71 +1,96 @@
 import React from 'react';
 import TodoList from './components/TodoComponents/TodoList';
-import TodoForm from './components/TodoComponents/TodoForm';
 
 class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      todos: [
-        {
-          task: 'Remain Fly',
-          id: 1528817077286,
-          completed: false
-        },
-        {
-          task: 'Master React',
-          id: 1528817084358,
-          completed: false
-        }
-      ],
-      todo: ''
-    };
-  }
   // you will need a place to store your state in this component.
   // design `App` to be the parent component of your application.
   // this component is going to take care of state, and any change handlers you need to work with your state
-  addTodo = event => {
-    event.preventDefault();
-    const todos = this.state.todos.slice();
-    todos.push({ task: this.state.todo, completed: false, id: Date.now() });
-    this.setState({ todos, todo: '' });
-  };
+  constructor() {
+    super();
+    this.state = {
+      userInput: '',
+      backgroundColors: ['#2659b7', '#00a271', '#ffca05', '#714a91'],
+      todoList: [
+        {
+          task: 'Wake-Up',
+          id: 1528817077286,
+          completed: false,
+          backgroundColor: '#ffca05'
+        },
+        {
+          task: 'Be Awesome',
+          id: 1528817084358,
+          completed: false,
+          backgroundColor: '#2659b7'
+        }
+      ]
+    };
+  }
 
-  changeTodo = event => this.setState({ [event.target.name]: event.target.value });
+  enterPressed = event => {
+    if(event.which === 13) {
+      this.setState({
+        userInput: '',
+        todoList: this.state.todoList.concat({
+          task: event.target.value,
+          id: Date.now(),
+          completed: false,
+          backgroundColor: this.state.backgroundColors[Math.floor(Math.random()*this.state.backgroundColors.length)]
+        }) 
+      });
+    }
+  }
 
-  toggleTodoComplete = id => {
-    let todos = this.state.todos.slice();
-    todos = todos.map(todo => {
-      if (todo.id === id) {
-        todo.completed = !todo.completed;
-        return todo;
-      } else {
-        return todo;
-      }
+  buttonPressed = () => {
+    this.setState({
+      userInput: '',
+      todoList: this.state.todoList.concat({
+        task: this.state.userInput,
+        id: Date.now(),
+        completed: false,
+        backgroundColor: this.state.backgroundColors[Math.floor(Math.random()*this.state.backgroundColors.length)]
+      }) 
     });
-    this.setState({ todos });
-  };
+  }
 
-  clearCompletedTodos = event => {
-    event.preventDefault();
-    let todos = this.state.todos.slice();
-    todos = todos.filter(todo => !todo.completed);
-    this.setState({ todos });
-  };
+  handleSubmit = event => {
+    this.setState({
+      userInput: event.target.value
+    });
+  }
+
+  strikeDone = (id) => {
+    this.setState({
+      todoList: this.state.todoList.map(todo => {
+        if(todo.id === id && todo.completed === false) {
+          return {
+            task: todo.task,
+            id: todo.id,
+            completed: true
+          }
+        } else if(todo.id === id && todo.completed === true) {
+          return {
+            task: todo.task,
+            id: todo.id,
+            completed: false
+          }
+        } else {
+          return todo
+        }
+      })
+    })
+  }
+
+  clearItem = () => {
+    this.setState({
+      todoList: this.state.todoList.filter(todo => todo.completed === false)
+    })
+  }
 
   render() {
     return (
       <div>
-        <TodoList
-          handleToggleComplete={this.toggleTodoComplete}
-          todos={this.state.todos}
-        />
-        <TodoForm
-          value={this.state.todo}
-          handleTodoChange={this.changeTodo}
-          handleAddTodo={this.addTodo}
-          handleClearTodos={this.clearCompletedTodos}
-        />
+        <TodoList userInput={this.state.userInput} todoList={this.state.todoList} handleSubmit={this.handleSubmit} buttonPressed={this.buttonPressed} enterPressed={this.enterPressed} strikeDone={this.strikeDone} clearItem={this.clearItem} />
       </div>
     );
   }
