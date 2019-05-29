@@ -3,7 +3,7 @@
 }
 
 .todo-container {
-    background-color: #dd741f;
+    background-color: #b59cf1;
     width: 50%;
     margin: 0 auto;
     padding: 50px;
@@ -48,7 +48,7 @@ input {
 }
 
 button {
-    background-color: #714a91; 
+    background-color: #055a0c; 
     border: none;
     border-radius: 25px;
     color: white;
@@ -58,5 +58,5 @@ button {
 }
 
 .clear {
-    background-color: #00a271;
+    background-color: #a20059;
 }

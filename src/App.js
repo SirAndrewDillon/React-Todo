@@ -9,19 +9,19 @@ class App extends React.Component {
     super();
     this.state = {
       userInput: '',
-      backgroundColors: ['#2659b7', '#00a271', '#ffca05', '#714a91'],
+      backgroundColors: ['#FFA07A', '#00a271', '#808000', '#714a91'],
       todoList: [
         {
-          task: 'Wake-Up',
+          task: 'Roll Out of Bed',
           id: 1528817077286,
           completed: false,
-          backgroundColor: '#ffca05'
+          backgroundColor: '#808000'
         },
         {
-          task: 'Be Awesome',
+          task: 'Stay Awesome',
           id: 1528817084358,
           completed: false,
-          backgroundColor: '#2659b7'
+          backgroundColor: '#FFA07A'
         }
       ]
     };
