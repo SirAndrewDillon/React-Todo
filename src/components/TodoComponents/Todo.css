@@ -1,0 +1,62 @@
+.line-through {
+    text-decoration: line-through;
+}
+
+.todo-container {
+    background-color: #dd741f;
+    width: 50%;
+    margin: 0 auto;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.todo {
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000;
+    margin: 20px;
+    width: 100%;
+}
+
+.todo-form-container {
+    border-radius:25px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+h1 {
+    color: #000;
+}
+
+img {
+    border-radius: 25px;
+    width: 40%;
+}
+
+input {
+    background-color:#ececec;
+    padding: 10px;
+    border:none;
+    border-radius: 25px;
+    width: 50%;
+}
+
+button {
+    background-color: #714a91; 
+    border: none;
+    border-radius: 25px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.clear {
+    background-color: #00a271;
+}
